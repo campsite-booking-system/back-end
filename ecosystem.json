@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "name": "booking-back-end",
+      "script": "./dist/server.js",
+      "cwd": "/var/www/booking/back-end",
+      "error_file": "/var/log/booking/back-end/back-end.err.log",
+      "out_file": "/var/log/booking/back-end/back-end.out.log",
+      "exec_mode": "fork_mode"
+    }
+  ]
+}
