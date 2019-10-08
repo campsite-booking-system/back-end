@@ -27,5 +27,5 @@ Route.group(() => {
 |--------------------------------------------------------------------------
 */
 Route.group(() => {
-  Route.post('/sign-in', 'Private/V1/AuthController.signIn');
+  Route.post('/sign-in', 'Private/V1/AuthController.signIn').validator('Authentication/Login');
 }).prefix('1.0/auth');

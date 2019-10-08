@@ -1,3 +1,5 @@
+const Antl = use('Antl');
+
 const Establishment = use('App/Models/Establishment');
 const EstablishmentToken = use('App/Models/EstablishmentToken');
 
@@ -8,7 +10,7 @@ class PublicApi {
     const token = request.header('Authorization');
 
     if (!token) {
-      throw new ForbiddenException('No authentication token has been provided.');
+      throw new ForbiddenException(Antl.formatMessage('errors.missingToken'));
     }
 
     const establishment = await Establishment.findBy('slug', subdomains.establishment);

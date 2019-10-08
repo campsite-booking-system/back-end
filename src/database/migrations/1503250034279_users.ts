@@ -16,6 +16,8 @@ class UsersSchema extends Schema {
 
       table.string('last_name').notNullable();
 
+      table.string('account_status');
+
       table.timestamps();
     });
   }

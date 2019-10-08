@@ -1,0 +1,14 @@
+{
+  "default": "Something went wrong on our side, please contact our support.",
+  "forbidden": "You are not allowed to access this resource.",
+  "notFound": "The requested resource could not been found.",
+
+  "missingToken": "No authentication token was provided.",
+
+  "invalidCredentials": "The email and password combination you entered is incorrect.",
+  "userNotFound": "We couldn't find your Vulpee account.",
+
+  "requiredEmail": "Please enter your email address.",
+  "invalidEmail": "Please enter a valid email.",
+  "requiredPassword": "Please enter your password."
+}

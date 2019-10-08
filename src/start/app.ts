@@ -18,7 +18,9 @@ const providers: string[] = [
   '@adonisjs/lucid/providers/LucidProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
   '@adonisjs/lucid-slugify/providers/SlugifyProvider',
-  path.join(__dirname, '../providers/BugsnagProvider.js'),
+  '@adonisjs/antl/providers/AntlProvider',
+  '@adonisjs/persona/providers/PersonaProvider',
+  // path.join(__dirname, '../providers/BugsnagProvider.js'),
 ];
 
 /*

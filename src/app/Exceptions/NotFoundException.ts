@@ -1,11 +1,13 @@
 import { HttpException } from '@adonisjs/generic-exceptions';
 
+const Antl = use('Antl');
+
 export default class NotFoundException extends HttpException {
   static get defaultMessage() {
-    return 'The resource could not been found.';
+    return Antl.formatMessage('errors.notFound');
   }
 
   constructor(message?: string) {
-    super(message || NotFoundException.defaultMessage, 404);
+    super(JSON.stringify({ message: message || NotFoundException.defaultMessage }), 404);
   }
 }

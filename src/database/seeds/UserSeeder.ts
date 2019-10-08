@@ -19,6 +19,7 @@ class UserSeeder {
     adminUser.last_name = 'Doe';
     adminUser.email = 'admin@vulpee.com';
     adminUser.password = 'password';
+    adminUser.account_status = 'active';
 
     await adminUser.save();
 
@@ -31,6 +32,7 @@ class UserSeeder {
     managerUser.last_name = 'Doe';
     managerUser.email = 'manager@vulpee.com';
     managerUser.password = 'password';
+    managerUser.account_status = 'active';
 
     await managerUser.save();
 
@@ -41,6 +43,7 @@ class UserSeeder {
     viewUser.last_name = 'Doe';
     viewUser.email = 'view@vulpee.com';
     viewUser.password = 'password';
+    viewUser.account_status = 'active';
 
     await viewUser.save();
   }

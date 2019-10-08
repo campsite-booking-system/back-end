@@ -12687,7 +12687,7 @@ interface Antl {
    * @param formats?
    * @return
    */
-  formatMessage(message: string, values: Object, formats?: Object | Array<any>): string;
+  formatMessage(message: string, values?: Object, formats?: Object | Array<any>): string;
 
   /**
    * Returns raw message for a given key

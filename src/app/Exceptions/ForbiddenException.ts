@@ -1,11 +1,13 @@
 import { HttpException } from '@adonisjs/generic-exceptions';
 
+const Antl = use('Antl');
+
 export default class ForbiddenException extends HttpException {
   static get defaultMessage() {
-    return 'Access forbidden. You are not allowed to access this resource.';
+    return Antl.formatMessage('errors.forbidden');
   }
 
   constructor(message?: string) {
-    super(message || ForbiddenException.defaultMessage, 403);
+    super(JSON.stringify({ message: message || ForbiddenException.defaultMessage }), 403);
   }
 }

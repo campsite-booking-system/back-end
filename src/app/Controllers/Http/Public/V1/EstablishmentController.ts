@@ -1,4 +1,4 @@
-import { Exception, NotFoundException } from '../../../../Exceptions';
+import { NotFoundException } from '../../../../Exceptions';
 
 const Establishment = use('App/Models/Establishment');
 
