@@ -12,7 +12,7 @@ class RentalSeeder {
   }
 
   private async createRentals(characteristics, services) {
-    const establishmentOne = await Establishment.findBy('name', 'Camping Lestaubière');
+    const establishmentOne = await Establishment.findBy('name', 'Demo Establishment');
 
     [1, 2, 3].forEach(async index => {
       const rental = new Rental();

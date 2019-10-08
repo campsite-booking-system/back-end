@@ -12,7 +12,7 @@ export = {
   |
   */
 
-  name: Env.get('APP_NAME', 'BookingSystem'),
+  name: Env.get('APP_NAME', 'Vulpee'),
 
   /*
   |--------------------------------------------------------------------------
@@ -196,7 +196,7 @@ export = {
     */
     console: {
       driver: 'console',
-      name: 'booking-system',
+      name: 'vulpee',
       level: 'info',
     },
 
@@ -213,8 +213,8 @@ export = {
     */
     file: {
       driver: 'file',
-      name: 'booking-system',
-      filename: 'booking-system.log',
+      name: 'vulpee',
+      filename: 'vulpee.log',
       level: 'info',
     },
   },

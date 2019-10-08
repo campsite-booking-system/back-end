@@ -17,7 +17,7 @@ class UserSeeder {
 
     adminUser.first_name = 'John';
     adminUser.last_name = 'Doe';
-    adminUser.email = 'admin@gmail.com';
+    adminUser.email = 'admin@vulpee.com';
     adminUser.password = 'password';
 
     await adminUser.save();
@@ -29,7 +29,7 @@ class UserSeeder {
 
     managerUser.first_name = 'John';
     managerUser.last_name = 'Doe';
-    managerUser.email = 'manager@gmail.com';
+    managerUser.email = 'manager@vulpee.com';
     managerUser.password = 'password';
 
     await managerUser.save();
@@ -39,7 +39,7 @@ class UserSeeder {
 
     viewUser.first_name = 'Jane';
     viewUser.last_name = 'Doe';
-    viewUser.email = 'view@gmail.com';
+    viewUser.email = 'view@vulpee.com';
     viewUser.password = 'password';
 
     await viewUser.save();

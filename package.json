@@ -1,9 +1,12 @@
 {
-  "name": "booking-system-back-end",
-  "description": "Back-end of the Campsite Booking System",
+  "name": "vulpee-back-end",
+  "description": "Vulpee Booking Management System Back-end",
   "version": "0.0.1",
   "main": "dist/server.js",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vulpee/back-end"
+  },
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",
     "@adonisjs/auth": "^3.0.7",
@@ -40,8 +43,8 @@
   },
   "scripts": {
     "start": "nodemon ./dist/server.js",
-    "start:typescript": "yarn clean && yarn copy:files && tsc-watch",
-    "build": "yarn clean && tsc && yarn copy:files",
+    "start:typescript": "npm run clean && npm run copy:files && tsc-watch",
+    "build": "npm run clean && tsc && npm run copy:files",
     "copy:files": "cpx '.env' dist && cpx 'package.json' dist && cpx 'ace' dist",
     "clean": "rimraf dist/",
     "db:reset": "node ace migration:refresh && node ace seed --files database/seeds/UserSeeder.js && node ace seed --files database/seeds/PermissionSeeder.js && node ace seed --files database/seeds/EstablishmentSeeder.js && node ace seed --files database/seeds/RentalSeeder.js"
