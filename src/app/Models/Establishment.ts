@@ -3,12 +3,6 @@ import opencage from 'opencage-api-client';
 const Model = use('Model');
 const Logger = use('Logger');
 
-const EstablishmentContact = use('App/Models/EstablishmentContact');
-const EstablishmentToken = use('App/Models/EstablishmentToken');
-const EstablishmentsUsersPermissions = use('App/Models/EstablishmentsUsersPermissions');
-const Rental = use('App/Models/Rental');
-const User = use('App/Models/User');
-
 class Establishment extends Model {
   public static boot() {
     super.boot();
@@ -50,25 +44,25 @@ class Establishment extends Model {
   }
 
   public users() {
-    return this.belongsToMany(User)
+    return this.belongsToMany('App/Models/User')
       .withTimestamps()
       .pivotTable('establishments_users');
   }
 
   public permissions() {
-    return this.hasMany(EstablishmentsUsersPermissions);
+    return this.hasMany('App/Models/EstablishmentsUsersPermissions');
   }
 
   public tokens() {
-    return this.hasMany(EstablishmentToken);
+    return this.hasMany('App/Models/EstablishmentToken');
   }
 
   public rentals() {
-    return this.hasMany(Rental);
+    return this.hasMany('App/Models/Rental');
   }
 
   public contacts() {
-    return this.hasMany(EstablishmentContact);
+    return this.hasMany('App/Models/EstablishmentContact');
   }
 }
 

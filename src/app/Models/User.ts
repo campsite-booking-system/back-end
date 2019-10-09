@@ -6,11 +6,7 @@ import { IRole, IPermission, IEstablishment, IEstablishmentUserPermission } from
 const Model = use('Model');
 const Hash = use('Hash');
 
-const Role = use('App/Models/Role');
-const Establishment = use('App/Models/Establishment');
-const EstablishmentsUsersPermissions = use('App/Models/EstablishmentsUsersPermissions');
 const Permission = use('App/Models/Permission');
-const UserToken = use('App/Models/UserToken');
 
 class User extends Model {
   public static boot() {
@@ -24,21 +20,21 @@ class User extends Model {
   }
 
   public roles() {
-    return this.belongsToMany(Role)
+    return this.belongsToMany('App/Models/Role')
       .withTimestamps()
       .pivotTable('roles_users');
   }
 
   public permissions() {
-    return this.hasMany(EstablishmentsUsersPermissions);
+    return this.hasMany('App/Models/EstablishmentsUsersPermissions');
   }
 
   public establishments() {
-    return this.hasMany(Establishment);
+    return this.hasMany('App/Models/Establishment');
   }
 
   public tokens() {
-    return this.hasMany(UserToken);
+    return this.hasMany('App/Models/UserToken');
   }
 
   public async getRoles(): Promise<RoleType[]> {

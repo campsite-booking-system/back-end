@@ -96,6 +96,7 @@ export = {
     return {
       'uid.exists': Antl.formatMessage('errors.userNotFound'),
       'password.mis_match': Antl.formatMessage('errors.invalidCredentials'),
+      'password.confirmed': Antl.formatMessage('errors.passwordsNotIdentical'),
     };
   },
 };

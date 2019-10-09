@@ -1,6 +1,5 @@
 const Model = use('Model');
 
-const Rental = use('App/Models/Rental');
 const RentalsCharacteristics = use('App/Models/RentalsCharacteristics');
 
 class RentalCharacteristic extends Model {
@@ -9,7 +8,7 @@ class RentalCharacteristic extends Model {
   }
 
   public rentals() {
-    return this.belongsToMany(Rental, 'characteristic_id', 'rental_id')
+    return this.belongsToMany('App/Models/Rental', 'characteristic_id', 'rental_id')
       .withTimestamps()
       .pivotModel(RentalsCharacteristics);
   }

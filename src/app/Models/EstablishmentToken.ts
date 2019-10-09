@@ -2,8 +2,6 @@ import crypto from 'crypto';
 
 const Model = use('Model');
 
-const Establishment = use('App/Models/Establishment');
-
 class EstablishmentToken extends Model {
   public static boot() {
     super.boot();
@@ -18,7 +16,7 @@ class EstablishmentToken extends Model {
   }
 
   public establishment() {
-    return this.belongsTo(Establishment);
+    return this.belongsTo('App/Models/Establishment');
   }
 }
 

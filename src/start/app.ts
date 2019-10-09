@@ -12,6 +12,7 @@ const path = require('path');
 */
 const providers: string[] = [
   '@adonisjs/framework/providers/AppProvider',
+  '@adonisjs/framework/providers/ViewProvider',
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
@@ -20,6 +21,7 @@ const providers: string[] = [
   '@adonisjs/lucid-slugify/providers/SlugifyProvider',
   '@adonisjs/antl/providers/AntlProvider',
   '@adonisjs/persona/providers/PersonaProvider',
+  '@adonisjs/mail/providers/MailProvider',
   // path.join(__dirname, '../providers/BugsnagProvider.js'),
 ];
 

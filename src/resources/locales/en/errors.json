@@ -2,13 +2,17 @@
   "default": "Something went wrong on our side, please contact our support.",
   "forbidden": "You are not allowed to access this resource.",
   "notFound": "The requested resource could not been found.",
+  "invalidToken": "The given token is not valid.",
 
   "missingToken": "No authentication token was provided.",
 
   "invalidCredentials": "The email and password combination you entered is incorrect.",
   "userNotFound": "We couldn't find your Vulpee account.",
+  "passwordsNotIdentical": "Both passwords need to match to change your password.",
+  "resetPasswordInvalidToken": "The reset token is not valid. Please try requesting a new token via the forgot password form.",
 
   "requiredEmail": "Please enter your email address.",
   "invalidEmail": "Please enter a valid email.",
-  "requiredPassword": "Please enter your password."
+  "requiredPassword": "Please enter your password.",
+  "requiredPasswordConfirmation": "Please confirm your password."
 }

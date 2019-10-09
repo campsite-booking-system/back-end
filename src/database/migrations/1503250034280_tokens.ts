@@ -2,7 +2,7 @@ const Schema = use('Schema');
 
 class TokensSchema extends Schema {
   public up() {
-    this.create('tokens', table => {
+    this.create('user_tokens', table => {
       table.increments();
 
       table
@@ -31,7 +31,7 @@ class TokensSchema extends Schema {
   }
 
   public down() {
-    this.drop('tokens');
+    this.drop('user_tokens');
   }
 }
 
