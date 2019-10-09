@@ -28,8 +28,6 @@ class AuthenticationService {
         throw new InvalidTokenException(Antl.formatMessage('errors.resetPasswordInvalidToken'));
       }
 
-      console.log(error.name, error);
-
       throw new Exception();
     }
   }
