@@ -10,6 +10,12 @@ class AuthController {
     return authenticationService.login(uid, password);
   }
 
+  public async verify(context) {
+    const authenticationService = new AuthenticationService(context);
+
+    return authenticationService.verify();
+  }
+
   public async forgotPassword({ request }) {
     const uid = request.input('uid');
 

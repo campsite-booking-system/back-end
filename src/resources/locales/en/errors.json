@@ -2,6 +2,7 @@
   "default": "Something went wrong on our side, please contact our support.",
   "forbidden": "You are not allowed to access this resource.",
   "notFound": "The requested resource could not been found.",
+  "unauthorized": "You are not authorized to access this resource",
   "invalidToken": "The given token is not valid.",
 
   "missingToken": "No authentication token was provided.",

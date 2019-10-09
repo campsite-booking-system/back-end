@@ -1,4 +1,4 @@
-import { ValidationException, Exception, InvalidTokenException } from '../Exceptions';
+import { ValidationException, Exception, InvalidTokenException, UnauthorizedException } from '../Exceptions';
 
 const Persona = use('Persona');
 const Antl = use('Antl');
@@ -50,6 +50,14 @@ class AuthenticationService {
       }
 
       throw new Exception();
+    }
+  }
+
+  public async verify(): Promise<void> {
+    try {
+      await this.context.auth.check();
+    } catch (error) {
+      throw new UnauthorizedException();
     }
   }
 }
