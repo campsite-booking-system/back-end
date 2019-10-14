@@ -44,13 +44,7 @@ class Establishment extends Model {
   }
 
   public users() {
-    return this.belongsToMany('App/Models/User')
-      .withTimestamps()
-      .pivotTable('establishments_users');
-  }
-
-  public permissions() {
-    return this.hasMany('App/Models/EstablishmentsUsersPermissions');
+    return this.belongsToMany('App/Models/User').pivotTable('roles_establishments_users');
   }
 
   public tokens() {
@@ -59,10 +53,6 @@ class Establishment extends Model {
 
   public rentals() {
     return this.hasMany('App/Models/Rental');
-  }
-
-  public contacts() {
-    return this.hasMany('App/Models/EstablishmentContact');
   }
 }
 

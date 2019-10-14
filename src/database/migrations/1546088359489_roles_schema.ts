@@ -15,8 +15,6 @@ class RolesSchema extends Schema {
         .notNullable()
         .unique();
 
-      table.text('description').nullable();
-
       table.timestamps();
     });
   }

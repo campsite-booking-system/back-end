@@ -1,6 +1,6 @@
 const Schema = use('Schema');
 
-class TokensSchema extends Schema {
+class UserTokensSchema extends Schema {
   public up() {
     this.create('user_tokens', table => {
       table.increments();
@@ -35,4 +35,4 @@ class TokensSchema extends Schema {
   }
 }
 
-export = TokensSchema;
+export = UserTokensSchema;

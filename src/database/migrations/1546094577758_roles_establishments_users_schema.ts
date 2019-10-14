@@ -1,8 +1,8 @@
 const Schema = use('Schema');
 
-class RolesUsersSchema extends Schema {
+class RolesEstablishmentsUsersSchema extends Schema {
   public up() {
-    this.create('roles_users', table => {
+    this.create('roles_establishments_users', table => {
       table.increments();
 
       table
@@ -27,13 +27,24 @@ class RolesUsersSchema extends Schema {
         .inTable('users')
         .onDelete('cascade');
 
+      table
+        .integer('establishment_id')
+        .unsigned()
+        .index();
+
+      table
+        .foreign('establishment_id')
+        .references('id')
+        .inTable('establishments')
+        .onDelete('cascade');
+
       table.timestamps();
     });
   }
 
   public down() {
-    this.drop('roles_users');
+    this.drop('roles_establishments_users');
   }
 }
 
-export = RolesUsersSchema;
+export = RolesEstablishmentsUsersSchema;

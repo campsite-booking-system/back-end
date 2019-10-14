@@ -1,3 +1,5 @@
+import { PermissionTypes } from '../app/Types';
+
 const Route = use('Route');
 const Env = use('Env');
 
@@ -32,3 +34,12 @@ Route.group(() => {
   Route.post('/forgot-password', 'Private/V1/AuthController.forgotPassword').validator('Authentication/ForgotPassword');
   Route.post('/reset-password', 'Private/V1/AuthController.resetPassword').validator('Authentication/ResetPassword');
 }).prefix('1.0/auth');
+
+Route.group(() => {
+  Route.get('/', 'Private/V1/EstablishmentController.index');
+  Route.get('/:establishment', 'Private/V1/EstablishmentController.get').middleware([
+    `can:${PermissionTypes.ViewEstablishment}`,
+  ]);
+})
+  .middleware(['auth'])
+  .prefix('1.0/establishment');
