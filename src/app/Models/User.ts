@@ -1,10 +1,7 @@
-import { PermissionTypes, PermissionType, RoleType } from '../Types';
-import { IRole, IPermission, IEstablishment, IEstablishmentUserPermission } from '../Types/Models';
+import { RoleType, PermissionType } from '../Types';
 
 const Model = use('Model');
 const Hash = use('Hash');
-
-const Permission = use('App/Models/Permission');
 
 class User extends Model {
   public static boot() {
@@ -17,60 +14,41 @@ class User extends Model {
     });
   }
 
-  public roles() {
-    return this.belongsToMany('App/Models/Role')
-      .withTimestamps()
-      .pivotTable('roles_users');
+  public async role(establishmentId: number): Promise<any> {
+    return this.roles()
+      .where('establishment_id', establishmentId)
+      .first();
   }
 
-  public permissions() {
-    return this.hasMany('App/Models/EstablishmentsUsersPermissions');
+  public roles() {
+    return this.belongsToMany('App/Models/Role').pivotTable('roles_establishments_users');
+  }
+
+  public async permissions(establishmentId: number) {
+    const role = await this.role(establishmentId);
+
+    return role.permissions().fetch();
   }
 
   public establishments() {
-    return this.hasMany('App/Models/Establishment');
+    return this.belongsToMany('App/Models/Establishment').pivotTable('roles_establishments_users');
   }
 
   public tokens() {
     return this.hasMany('App/Models/UserToken');
   }
 
-  public async getRoles(): Promise<RoleType[]> {
-    const rolesQuery = await this.roles().fetch();
-    const roles = rolesQuery.rows as IRole[];
+  public async can(establishmentId: number, permission: PermissionType): Promise<boolean> {
+    const permissions = await this.permissions(establishmentId);
+    const permissionTypes: PermissionType[] = permissions.rows.map(item => item.type);
 
-    return roles.map(role => role.type);
+    return permissionTypes.includes(permission);
   }
 
-  public async getPermissions(establishmentId: number): Promise<PermissionType[]> {
-    const establishmentPermissionsQuery = await this.permissions()
-      .where('establishment_id', establishmentId)
-      .fetch();
-    const establishmentPermissions = establishmentPermissionsQuery.rows as IEstablishmentUserPermission[];
+  public async is(establishmentId: number, roleType: RoleType): Promise<boolean> {
+    const role = await this.role(establishmentId);
 
-    const permissionIds = establishmentPermissions.map(row => row.permission_id);
-
-    const permissionsQuery = await Permission.query()
-      .whereIn('id', permissionIds)
-      .fetch();
-    const permissions = permissionsQuery.rows as IPermission[];
-
-    return permissions.map(permission => permission.type);
-  }
-
-  public async getViewableEstablishments(): Promise<{ id: number; name: string }[]> {
-    const establishmentQuery = await this.establishments().fetch();
-    const establishments = establishmentQuery.rows as IEstablishment[];
-
-    return establishments
-      .filter(async establishment => this.can(establishment.id, PermissionTypes.ViewEstablishment))
-      .map(establishment => ({ id: establishment.id, name: establishment.name }));
-  }
-
-  public async can(establishmentId: number, property: PermissionType): Promise<boolean> {
-    const permissions = await this.getPermissions(establishmentId);
-
-    return permissions.includes(property);
+    return role.type === roleType;
   }
 }
 

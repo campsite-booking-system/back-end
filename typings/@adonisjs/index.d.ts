@@ -9974,7 +9974,7 @@ declare namespace Lucid {
        * @param pivotModel
        * @return
        */
-      pivotModel(pivotModel: Model): this;
+      pivotModel(pivotModel: Model | string): this;
 
       /**
        * Define the pivot table

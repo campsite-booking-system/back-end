@@ -1,16 +1,19 @@
 import { Http } from '../../../typings/@adonisjs';
-import { PermissionType } from '../Types';
 
-const ForbiddenException = require('../Exceptions/ForbiddenException');
+import { PermissionType } from '../Types';
+import { ForbiddenException } from '../Exceptions';
 
 class Can {
-  public async handle({ request, auth }: Http.Context, next: () => void, properties: PermissionType[]) {
-    const property: PermissionType = properties[0];
+  public async handle(
+    { request, auth }: Http.Context,
+    next: () => void,
+    permissions: PermissionType | PermissionType[],
+  ) {
     const { establishment } = request.params;
 
-    const user = auth.user;
+    const permission: PermissionType = Array.isArray(permissions) ? permissions[0] : permissions;
 
-    const can = await user.can(establishment, property);
+    const can = await auth.user.can(establishment, permission);
 
     if (!can) {
       throw new ForbiddenException();
