@@ -1,5 +1,6 @@
+import { PermissionType } from '@vulpee/js-api';
+
 import { BaseModel } from '.';
-import { PermissionType } from '../';
 
 export default interface IPermission extends BaseModel {
   id: number;

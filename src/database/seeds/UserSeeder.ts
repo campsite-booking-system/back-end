@@ -1,4 +1,5 @@
-import { RoleTypes } from '../../app/Types';
+import { RoleTypes } from '@vulpee/js-api';
+
 import { IEstablishment } from '../../app/Types/Models';
 
 const User = use('App/Models/User');

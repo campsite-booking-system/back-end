@@ -30,7 +30,7 @@ class PublicApi {
       throw new ForbiddenException();
     }
 
-    next();
+    await next();
   }
 }
 

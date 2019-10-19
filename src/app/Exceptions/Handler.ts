@@ -8,9 +8,9 @@ const Logger = use('Logger');
 
 class ExceptionHandler extends BaseExceptionHandler {
   public async handle(error: any, { response }: Http.Context) {
-    if (error.name === 'HttpException' || error.name === 'TypeError') {
+    if (error.name === 'HttpException' || error.name === 'TypeError' || error.name === 'Error') {
       response.status(500).send({ error: { message: Exception.defaultMessage } });
-    } else if (error.name === 'InvalidJwtToken') {
+    } else if (error.name === 'InvalidApiToken') {
       response.status(401).send({ error: { message: UnauthorizedException.defaultMessage } });
     } else {
       response.status(error.status).send({ error: JSON.parse(error.message) });
@@ -22,7 +22,8 @@ class ExceptionHandler extends BaseExceptionHandler {
       error.name === 'FetchError' ||
       error.name === 'TypeError' ||
       error.name === 'Exception' ||
-      error.name === 'HttpException'
+      error.name === 'HttpException' ||
+      error.name === 'Error'
     ) {
       Logger.crit(error.message, error);
 

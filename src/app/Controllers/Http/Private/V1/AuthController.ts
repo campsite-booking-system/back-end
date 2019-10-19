@@ -3,23 +3,22 @@ import { Http } from '../../../../../../typings/@adonisjs';
 import { AuthenticationService } from '../../../../Services';
 
 class AuthController {
-  public async signIn(context: Http.Context) {
-    const authenticationService = new AuthenticationService(context);
+  public async signIn({ request, auth }: Http.Context) {
+    const authenticationService = new AuthenticationService(auth);
 
-    const { request } = context;
     const { uid, password } = request.only(['uid', 'password']);
 
     return authenticationService.login(uid, password);
   }
 
-  public async logout(context: Http.Context) {
-    const authenticationService = new AuthenticationService(context);
+  public async logout({ auth }: Http.Context) {
+    const authenticationService = new AuthenticationService(auth);
 
     return authenticationService.logout();
   }
 
-  public async verify(context: Http.Context) {
-    const authenticationService = new AuthenticationService(context);
+  public async verify({ auth }: Http.Context) {
+    const authenticationService = new AuthenticationService(auth);
 
     return authenticationService.verify();
   }

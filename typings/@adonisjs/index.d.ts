@@ -9021,10 +9021,10 @@ declare namespace Lucid {
     hydrate(): void;
 
     //_instantiate
-    $attributes: Object;
+    $attributes: any;
     $persisted: Object;
     $originalAttributes: Object;
-    $relations: Object;
+    $relations: any;
     $sideLoaded: Object;
     $parent: Object;
     $frozen: boolean;

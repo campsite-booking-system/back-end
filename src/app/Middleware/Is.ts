@@ -1,6 +1,6 @@
 import { Http } from '../../../typings/@adonisjs';
+import { RoleType } from '@vulpee/js-api';
 
-import { RoleType } from '../Types';
 import { ForbiddenException } from '../Exceptions';
 
 class Is {
@@ -15,7 +15,7 @@ class Is {
       throw new ForbiddenException();
     }
 
-    next();
+    await next();
   }
 }
 
