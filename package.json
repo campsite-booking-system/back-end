@@ -53,7 +53,7 @@
     "copy:files": "cpx 'ace' dist && ln -s ../.env dist/.env && ln -s ../package.json dist/package.json && ln -fs ../src/resources dist/resources && ln -fs ../node_modules dist/node_modules",
     "clean": "rimraf dist/ && mkdir dist",
     "lint": "tslint 'src/**/*.ts' --project tsconfig.json && prettier --check 'src/**/*.ts'",
-    "test": "node dist/ace test",
+    "test": "cpx '.env.testing' dist && node dist/ace test",
     "db:reset": "node dist/ace migration:refresh && node dist/ace seed --files database/seeds/UserSeeder.js && node dist/ace seed --files database/seeds/PermissionSeeder.js && node dist/ace seed --files database/seeds/EstablishmentSeeder.js && node dist/ace seed --files database/seeds/RentalSeeder.js"
   },
   "autoload": {
