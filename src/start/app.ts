@@ -1,5 +1,3 @@
-const path = require('path');
-
 /*
 |--------------------------------------------------------------------------
 | Providers
@@ -34,7 +32,7 @@ const providers: string[] = [
 | Providers for migrations, tests etc.
 |
 */
-const aceProviders: string[] = ['@adonisjs/lucid/providers/MigrationsProvider'];
+const aceProviders: string[] = ['@adonisjs/lucid/providers/MigrationsProvider', '@adonisjs/vow/providers/VowProvider'];
 
 /*
 |--------------------------------------------------------------------------
