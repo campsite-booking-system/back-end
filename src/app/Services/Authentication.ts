@@ -59,6 +59,14 @@ class AuthenticationService {
     }
   }
 
+  public async logout(): Promise<void> {
+    try {
+      await this.context.auth.revokeTokens();
+    } catch (error) {
+      throw new Exception();
+    }
+  }
+
   public async verify(): Promise<void> {
     try {
       await this.context.auth.check();

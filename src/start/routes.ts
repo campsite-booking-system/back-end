@@ -30,6 +30,7 @@ Route.group(() => {
 */
 Route.group(() => {
   Route.post('/sign-in', 'Private/V1/AuthController.signIn').validator('Authentication/Login');
+  Route.post('/logout', 'Private/V1/AuthController.logout');
   Route.post('/verify', 'Private/V1/AuthController.verify');
   Route.post('/forgot-password', 'Private/V1/AuthController.forgotPassword').validator('Authentication/ForgotPassword');
   Route.post('/reset-password', 'Private/V1/AuthController.resetPassword').validator('Authentication/ResetPassword');
