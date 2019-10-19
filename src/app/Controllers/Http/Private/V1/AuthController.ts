@@ -12,6 +12,12 @@ class AuthController {
     return authenticationService.login(uid, password);
   }
 
+  public async logout(context: Http.Context) {
+    const authenticationService = new AuthenticationService(context);
+
+    return authenticationService.logout();
+  }
+
   public async verify(context: Http.Context) {
     const authenticationService = new AuthenticationService(context);
 
