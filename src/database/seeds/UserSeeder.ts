@@ -1,4 +1,5 @@
 import { RoleTypes } from '../../app/Types';
+import { IEstablishment } from '../../app/Types/Models';
 
 const User = use('App/Models/User');
 const Role = use('App/Models/Role');
@@ -18,7 +19,7 @@ class UserSeeder {
 
     const role = await Role.findBy('type', RoleTypes.Administrator);
 
-    await user.establishments().attach([establishmentId], row => {
+    await user.establishments().attach([establishmentId], (row: any) => {
       row.role_id = role.id;
     });
 
@@ -38,7 +39,7 @@ class UserSeeder {
 
     const role = await Role.findBy('type', RoleTypes.Manager);
 
-    await user.establishments().attach([establishmentId], row => {
+    await user.establishments().attach([establishmentId], (row: any) => {
       row.role_id = role.id;
     });
 
@@ -58,7 +59,7 @@ class UserSeeder {
 
     const role = await Role.findBy('type', RoleTypes.Viewer);
 
-    await user.establishments().attach([establishmentId], row => {
+    await user.establishments().attach([establishmentId], (row: any) => {
       row.role_id = role.id;
     });
     return user;
@@ -76,11 +77,11 @@ class UserSeeder {
     await user.save();
 
     const establishments = await Establishment.all();
-    const establishmentIds = establishments.rows.map(establishment => establishment.id);
+    const establishmentIds = establishments.rows.map((establishment: IEstablishment) => establishment.id);
 
     const role = await Role.findBy('type', RoleTypes.Administrator);
 
-    await user.establishments().attach(establishmentIds, row => {
+    await user.establishments().attach(establishmentIds, (row: any) => {
       row.role_id = role.id;
     });
 

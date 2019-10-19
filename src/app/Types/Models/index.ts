@@ -1,6 +1,5 @@
 export { default as BaseModel } from './BaseModel';
 export { default as IEstablishment } from './Establishment';
-export { default as IEstablishmentContact } from './EstablishmentContact';
 export { default as IEstablishmentToken } from './EstablishmentToken';
 export { default as IEstablishmentUserPermission } from './EstablishmentUserPermission';
 export { default as IPermission } from './Permission';
