@@ -1,4 +1,5 @@
 import { RoleTypes, PermissionTypes } from '../../app/Types';
+import { IPermission } from '../../app/Types/Models';
 
 const Role = use('App/Models/Role');
 const Permission = use('App/Models/Permission');
@@ -19,7 +20,7 @@ class RoleSeeder {
     await role.save();
     const permissionsQuery = await Permission.all();
 
-    const permissionIds = permissionsQuery.rows.map(permission => permission.id);
+    const permissionIds = permissionsQuery.rows.map((permission: IPermission) => permission.id);
 
     await role.permissions().attach(permissionIds);
   }
@@ -47,7 +48,7 @@ class RoleSeeder {
       ])
       .fetch();
 
-    const permissionIds = permissionsQuery.rows.map(permission => permission.id);
+    const permissionIds = permissionsQuery.rows.map((permission: IPermission) => permission.id);
 
     await role.permissions().attach(permissionIds);
   }
@@ -68,7 +69,7 @@ class RoleSeeder {
       ])
       .fetch();
 
-    const permissionIds = permissionsQuery.rows.map(permission => permission.id);
+    const permissionIds = permissionsQuery.rows.map((permission: IPermission) => permission.id);
 
     await role.permissions().attach(permissionIds);
   }

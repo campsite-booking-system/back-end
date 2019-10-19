@@ -23,27 +23,27 @@ class RentalSeeder {
     await rental.save();
 
     // Create the rental characteristics
-    await rental.characteristics().attach(this.characteristics.people.id, async row => {
+    await rental.characteristics().attach(this.characteristics.people.id, async (row: any) => {
       row.value = index * 4;
     });
 
-    await rental.characteristics().attach(this.characteristics.chambers.id, async row => {
+    await rental.characteristics().attach(this.characteristics.chambers.id, async (row: any) => {
       row.value = index * 2;
     });
 
-    await rental.characteristics().attach(this.characteristics.singleBeds.id, async row => {
+    await rental.characteristics().attach(this.characteristics.singleBeds.id, async (row: any) => {
       row.value = index * 2;
     });
 
-    await rental.characteristics().attach(this.characteristics.doubleBeds.id, async row => {
+    await rental.characteristics().attach(this.characteristics.doubleBeds.id, async (row: any) => {
       row.value = index;
     });
 
-    await rental.characteristics().attach(this.characteristics.bathrooms.id, async row => {
+    await rental.characteristics().attach(this.characteristics.bathrooms.id, async (row: any) => {
       row.value = index;
     });
 
-    await rental.characteristics().attach(this.characteristics.squareMeters.id, async row => {
+    await rental.characteristics().attach(this.characteristics.squareMeters.id, async (row: any) => {
       row.value = index * 40;
     });
 

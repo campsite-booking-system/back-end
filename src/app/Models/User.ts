@@ -1,4 +1,5 @@
 import { RoleType, PermissionType } from '../Types';
+import { IPermission } from '../Types/Models';
 
 const Model = use('Model');
 const Hash = use('Hash');
@@ -40,7 +41,7 @@ class User extends Model {
 
   public async can(establishmentId: number, permission: PermissionType): Promise<boolean> {
     const permissions = await this.permissions(establishmentId);
-    const permissionTypes: PermissionType[] = permissions.rows.map(item => item.type);
+    const permissionTypes: PermissionType[] = permissions.rows.map((item: IPermission) => item.type);
 
     return permissionTypes.includes(permission);
   }
