@@ -1,5 +1,3 @@
-import { check } from 'acler';
-
 import { PermissionTypes, PermissionType, RoleType } from '../Types';
 import { IRole, IPermission, IEstablishment, IEstablishmentUserPermission } from '../Types/Models';
 
@@ -67,12 +65,6 @@ class User extends Model {
     return establishments
       .filter(async establishment => this.can(establishment.id, PermissionTypes.ViewEstablishment))
       .map(establishment => ({ id: establishment.id, name: establishment.name }));
-  }
-
-  public async is(expression): Promise<boolean> {
-    const roles = await this.getRoles();
-
-    return check(expression, operand => roles.includes(operand));
   }
 
   public async can(establishmentId: number, property: PermissionType): Promise<boolean> {

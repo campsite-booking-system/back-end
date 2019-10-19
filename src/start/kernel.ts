@@ -32,7 +32,6 @@ const namedMiddleware: { [key: string]: string } = {
   auth: 'Adonis/Middleware/Auth',
   guest: 'Adonis/Middleware/AllowGuestOnly',
   publicApi: 'App/Middleware/PublicApi',
-  is: 'App/Middleware/Is',
   can: 'App/Middleware/Can',
 };
 

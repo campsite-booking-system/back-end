@@ -1,3 +1,6 @@
+import { Http } from '../../../typings/@adonisjs';
+
+import User from '../Models/User';
 import { ValidationException, Exception, InvalidTokenException, UnauthorizedException } from '../Exceptions';
 
 const Persona = use('Persona');
@@ -32,15 +35,15 @@ class AuthenticationService {
     }
   }
 
-  private context;
+  private context: Http.Context;
 
-  constructor(context) {
+  constructor(context: Http.Context) {
     this.context = context;
   }
 
   public async login(uid: string, password: string): Promise<{ token: string }> {
     try {
-      const user = await Persona.verify({ uid, password });
+      const user = (await Persona.verify({ uid, password })) as User;
       const { token } = await this.context.auth.generate(user);
 
       return { token };

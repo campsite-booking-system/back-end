@@ -7,7 +7,8 @@
     "removeComments": true,
     /* Strict Type-Checking Options */
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
     "strictNullChecks": true,
     "alwaysStrict": true,
     /* Module Resolution Options */

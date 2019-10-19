@@ -10,7 +10,7 @@ class BaseSerializer<T> {
   }
 
   public getRelations(relations: { [relation: string]: any }): { [relation: string]: any } {
-    const data = {};
+    const data: any = {};
 
     Object.keys(relations).forEach(relation => {
       if (relations[relation]) {

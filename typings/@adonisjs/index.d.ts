@@ -2,6 +2,7 @@ import http from 'http';
 import stream from 'stream';
 import events from 'events';
 import GE from '@adonisjs/generic-exceptions';
+import User from '../../src/app/Models/User';
 
 type WorkInProgress = any;
 type Omit<T, K extends keyof T> = T extends any ? Pick<T, Exclude<keyof T, K>> : never;
@@ -238,6 +239,16 @@ interface Config {
    * @param value
    */
   set(key: string, value: any): void;
+}
+
+interface Mail {
+  send(templatePath: string, data: any, render: (message: Message) => void): void;
+}
+
+interface Message {
+  to(email: string): Message;
+  from(email: string): Message;
+  subject(subject: string): Message;
 }
 
 /**
@@ -1600,7 +1611,7 @@ declare namespace Http {
      * @attribute params
      * @type {Object}
      */
-    params: Object;
+    params: any;
 
     /**
      * Reference to native HTTP response object
@@ -1824,7 +1835,7 @@ declare namespace Http {
      * @param keys
      * @return
      */
-    only(keys: string[]): Object;
+    only(keys: string[]): any;
 
     /**
      * Returns the http request method, it will give preference
@@ -3326,7 +3337,7 @@ declare namespace Auth {
      *   * ```
      * @return
      */
-    getUser(): Promise<Object>;
+    getUser(): Promise<User>;
 
     /**
      * Returns the value of authorization header
@@ -3536,7 +3547,7 @@ declare namespace Auth {
      * @param user
      * @return
      */
-    generate(user: Object): Promise<Object>;
+    generate(user: User): Promise<{ type: string; token: string }>;
 
     /**
      * Validates the API token by reading it from the request
@@ -5435,7 +5446,7 @@ interface Server {
    * @param callback?
    * @return
    */
-  listen(host?: 'localhost', port?: 3333, callback?: Function): HttpServer;
+  listen(host?: string, port?: number, callback?: Function): HttpServer;
 
   /**
    * Closes the HTTP server

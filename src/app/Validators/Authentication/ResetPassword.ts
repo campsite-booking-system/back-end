@@ -18,7 +18,7 @@ class ResetPassword {
     };
   }
 
-  public async fails(errorMessages) {
+  public async fails(errorMessages: any[]) {
     throw new ValidationException(errorMessages[0]);
   }
 }

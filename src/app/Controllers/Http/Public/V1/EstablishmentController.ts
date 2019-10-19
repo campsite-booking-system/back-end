@@ -1,3 +1,5 @@
+import { Http } from '../../../../../../typings/@adonisjs';
+
 import { NotFoundException } from '../../../../Exceptions';
 
 const Establishment = use('App/Models/Establishment');
@@ -6,7 +8,7 @@ class EstablishmentController {
   /**
    * Fetch the current establishment.
    */
-  public async index({ subdomains }) {
+  public async index({ subdomains }: Http.Context) {
     try {
       const establishment = await Establishment.query()
         .where('slug', subdomains.establishment)
