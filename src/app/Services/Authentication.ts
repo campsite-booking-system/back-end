@@ -44,6 +44,9 @@ class AuthenticationService {
   public async login(uid: string, password: string): Promise<{ token: string }> {
     try {
       const user = (await Persona.verify({ uid, password })) as User;
+
+      await this.context.auth.revokeTokensForUser(user);
+
       const { token } = await this.context.auth.generate(user);
 
       return { token };
