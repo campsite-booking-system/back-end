@@ -38,9 +38,9 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH}}
+      - name: Create .env file
+        run: cp .env.example .env
       - name: Build
         run: npm run build
-      - name: Create .env file
-        run: cp .env.example dist/.env
       - name: Test
         run: npm run test
