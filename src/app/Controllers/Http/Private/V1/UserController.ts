@@ -1,7 +1,9 @@
+import { Http } from '../../../../../../typings/@adonisjs';
+
 import { Exception } from '../../../../Exceptions';
 
 class UserController {
-  public async get({ response, auth }) {
+  public async get({ response, auth }: Http.Context) {
     try {
       const user = await auth.getUser();
 

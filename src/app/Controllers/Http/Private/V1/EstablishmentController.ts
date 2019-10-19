@@ -1,3 +1,5 @@
+import { Http } from '../../../../../../typings/@adonisjs';
+
 import { Exception } from '../../../../Exceptions';
 
 const Establishment = use('App/Models/Establishment');
@@ -9,7 +11,7 @@ class EstablishmentController {
    * If the user is admin, show all the establishments.
    * If the user is not admin, show only the permitted ones
    */
-  public async index({ response, auth }) {
+  public async index({ response, auth }: Http.Context) {
     try {
       const user = await auth.getUser();
       const userIsAdministrator = await user.is('administrator');
@@ -33,7 +35,7 @@ class EstablishmentController {
   /**
    * Get a single establishment
    */
-  public async get({ request, response, auth }) {
+  public async get({ request, response, auth }: Http.Context) {
     try {
       const user = await auth.getUser();
       const establishment = await Establishment.find(request.params.establishment);

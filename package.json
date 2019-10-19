@@ -22,6 +22,7 @@
     "@adonisjs/mail": "^3.0.10",
     "@adonisjs/persona": "^1.0.5",
     "@adonisjs/validator": "^5.0.6",
+    "@adonisjs/vow": "^1.0.17",
     "@bugsnag/js": "^5.1.0",
     "@vulpee/js-api": "^0.1.3",
     "acler": "^1.0.0",
@@ -51,6 +52,8 @@
     "build": "npm run clean && tsc && npm run copy:files",
     "copy:files": "cpx 'ace' dist && ln -s ../.env dist/.env && ln -s ../package.json dist/package.json && ln -fs ../src/resources dist/resources && ln -fs ../node_modules dist/node_modules",
     "clean": "rimraf dist/ && mkdir dist",
+    "lint": "tslint 'src/**/*.ts' --project tsconfig.json && prettier --check 'src/**/*.ts'",
+    "test": "cpx '.env.testing' dist && node dist/ace test",
     "db:reset": "node dist/ace migration:refresh && node dist/ace seed --files database/seeds/UserSeeder.js && node dist/ace seed --files database/seeds/PermissionSeeder.js && node dist/ace seed --files database/seeds/EstablishmentSeeder.js && node dist/ace seed --files database/seeds/RentalSeeder.js"
   },
   "autoload": {

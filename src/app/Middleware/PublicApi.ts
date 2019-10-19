@@ -1,12 +1,14 @@
+import { Http } from '../../../typings/@adonisjs';
+
+import { ForbiddenException } from '../Exceptions';
+
 const Antl = use('Antl');
 
 const Establishment = use('App/Models/Establishment');
 const EstablishmentToken = use('App/Models/EstablishmentToken');
 
-import { ForbiddenException } from '../Exceptions';
-
 class PublicApi {
-  public async handle({ request, subdomains }, next) {
+  public async handle({ request, subdomains }: Http.Context, next: () => void) {
     const token = request.header('Authorization');
 
     if (!token) {
@@ -28,7 +30,7 @@ class PublicApi {
       throw new ForbiddenException();
     }
 
-    await next();
+    next();
   }
 }
 

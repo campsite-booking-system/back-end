@@ -1,3 +1,6 @@
+import RentalServiceInterface from '../../app/Models/RentalService';
+import RentalCharacteristicInterface from '../../app/Models/RentalCharacteristic';
+
 const Establishment = use('App/Models/Establishment');
 const Rental = use('App/Models/Rental');
 const RentalCharacteristic = use('App/Models/RentalCharacteristic');
@@ -11,7 +14,10 @@ class RentalSeeder {
     await this.createRentals(characteristics, services);
   }
 
-  private async createRentals(characteristics, services) {
+  private async createRentals(
+    characteristics: { [key: string]: RentalCharacteristicInterface },
+    services: RentalServiceInterface[],
+  ) {
     const establishmentOne = await Establishment.findBy('name', 'Demo Establishment');
 
     [1, 2, 3].forEach(async index => {
@@ -24,31 +30,31 @@ class RentalSeeder {
 
       await rental.save();
 
-      await rental.characteristics().attach(characteristics.people.id, async row => {
+      await rental.characteristics().attach(characteristics.people.id, async (row: any) => {
         row.value = index * 4;
       });
 
-      await rental.characteristics().attach(characteristics.chambers.id, async row => {
+      await rental.characteristics().attach(characteristics.chambers.id, async (row: any) => {
         row.value = index * 2;
       });
 
-      await rental.characteristics().attach(characteristics.singleBeds.id, async row => {
+      await rental.characteristics().attach(characteristics.singleBeds.id, async (row: any) => {
         row.value = index * 2;
       });
 
-      await rental.characteristics().attach(characteristics.doubleBeds.id, async row => {
+      await rental.characteristics().attach(characteristics.doubleBeds.id, async (row: any) => {
         row.value = index;
       });
 
-      await rental.characteristics().attach(characteristics.bathrooms.id, async row => {
+      await rental.characteristics().attach(characteristics.bathrooms.id, async (row: any) => {
         row.value = index;
       });
 
-      await rental.characteristics().attach(characteristics.squareMeters.id, async row => {
+      await rental.characteristics().attach(characteristics.squareMeters.id, async (row: any) => {
         row.value = index * 40;
       });
 
-      await services.forEach(async service => {
+      services.forEach(async (service: RentalServiceInterface) => {
         if (Math.random() >= 0.3) {
           await rental.services().attach(service.id);
         }
@@ -57,7 +63,7 @@ class RentalSeeder {
   }
 
   private async createCharacteristic(label: string) {
-    const characteristic = new RentalCharacteristic();
+    const characteristic: RentalCharacteristicInterface = new RentalCharacteristic();
 
     characteristic.label = label;
 
@@ -78,7 +84,7 @@ class RentalSeeder {
   }
 
   private async createService(label: string) {
-    const service = new RentalService();
+    const service: RentalServiceInterface = new RentalService();
 
     service.label = label;
 
