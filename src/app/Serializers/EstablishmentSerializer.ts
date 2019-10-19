@@ -1,3 +1,5 @@
+import { Establishment as JsonEstablishment } from '@vulpee/js-api';
+
 import BaseSerializer from './BaseSerializer';
 import { IEstablishment } from '../Types/Models';
 
@@ -14,7 +16,7 @@ class EstablishmentSerializer extends BaseSerializer<IEstablishment> {
     return this.getRowJSON(this.rows);
   }
 
-  private getRowJSON(establishment: IEstablishment) {
+  private getRowJSON(establishment: IEstablishment): JsonEstablishment {
     const relations = this.getRelations(establishment.$relations);
 
     return {

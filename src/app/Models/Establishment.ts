@@ -47,6 +47,24 @@ class Establishment extends Model {
     return this.belongsToMany('App/Models/User').pivotTable('roles_establishments_users');
   }
 
+  public async role(userId: number): Promise<any> {
+    return this.roles()
+      .where('user_id', userId)
+      .first();
+  }
+
+  public roles() {
+    return this.belongsToMany('App/Models/Role')
+      .pivotTable('roles_establishments_users')
+      .withPivot(['user_id']);
+  }
+
+  public async permissions(userId: number) {
+    const role = await this.role(userId);
+
+    return role.permissions().fetch();
+  }
+
   public tokens() {
     return this.hasMany('App/Models/EstablishmentToken');
   }

@@ -9,8 +9,8 @@ class Permission extends Model {
     };
   }
 
-  static get visible() {
-    return ['id', 'name', 'description'];
+  static get Serializer() {
+    return use('App/Serializers/PermissionSerializer');
   }
 }
 

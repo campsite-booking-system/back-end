@@ -1,5 +1,6 @@
+import { RoleType } from '@vulpee/js-api';
+
 import { BaseModel } from '.';
-import { RoleType } from '../';
 
 export default interface IRole extends BaseModel {
   id: number;

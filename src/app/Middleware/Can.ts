@@ -1,6 +1,6 @@
 import { Http } from '../../../typings/@adonisjs';
+import { PermissionType } from '@vulpee/js-api';
 
-import { PermissionType } from '../Types';
 import { ForbiddenException } from '../Exceptions';
 
 class Can {
@@ -19,7 +19,7 @@ class Can {
       throw new ForbiddenException();
     }
 
-    next();
+    await next();
   }
 }
 

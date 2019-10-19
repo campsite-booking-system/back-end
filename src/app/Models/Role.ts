@@ -8,8 +8,8 @@ class Role extends Model {
     };
   }
 
-  static get visible() {
-    return ['id', 'name'];
+  static get Serializer() {
+    return use('App/Serializers/RoleSerializer');
   }
 
   public permissions() {

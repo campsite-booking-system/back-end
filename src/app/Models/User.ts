@@ -1,4 +1,5 @@
-import { RoleType, PermissionType } from '../Types';
+import { RoleType, PermissionType } from '@vulpee/js-api';
+
 import { IPermission } from '../Types/Models';
 
 const Model = use('Model');
@@ -15,6 +16,10 @@ class User extends Model {
     });
   }
 
+  static get Serializer() {
+    return use('App/Serializers/UserSerializer');
+  }
+
   public async role(establishmentId: number): Promise<any> {
     return this.roles()
       .where('establishment_id', establishmentId)
@@ -22,7 +27,9 @@ class User extends Model {
   }
 
   public roles() {
-    return this.belongsToMany('App/Models/Role').pivotTable('roles_establishments_users');
+    return this.belongsToMany('App/Models/Role')
+      .pivotTable('roles_establishments_users')
+      .withPivot(['establishment_id']);
   }
 
   public async permissions(establishmentId: number) {

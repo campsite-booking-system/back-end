@@ -1,4 +1,5 @@
-import { RoleTypes, PermissionTypes } from '../../app/Types';
+import { RoleTypes, PermissionTypes } from '@vulpee/js-api';
+
 import { IPermission } from '../../app/Types/Models';
 
 const Role = use('App/Models/Role');

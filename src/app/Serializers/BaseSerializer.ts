@@ -13,7 +13,7 @@ class BaseSerializer<T> {
     const data: any = {};
 
     Object.keys(relations).forEach(relation => {
-      if (relations[relation]) {
+      if (relation !== 'pivot' && relations[relation]) {
         const values = relations[relation];
 
         data[relation] = values.toJSON ? values.toJSON() : values;
