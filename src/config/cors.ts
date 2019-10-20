@@ -14,7 +14,7 @@ export = {
   | Function - Receives the current origin and should return one of the above values.
   |
   */
-  origin: ['http://app.vulpee.local', 'https://dev.app.vulpee.com', 'https://app.vulpee.com'],
+  origin: ['http://app.vulpee.local', 'https://app.vulpee.bramvanosta.dev'],
 
   /*
   |--------------------------------------------------------------------------
