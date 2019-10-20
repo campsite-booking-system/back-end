@@ -1,0 +1,12 @@
+module.exports = {
+  apps: [
+    {
+      name: 'vulpee-back-end',
+      script: './dist/server.js',
+      cwd: '/var/www/vulpee/back-end',
+      error_file: '/var/log/vulpee/back-end/back-end.err.log',
+      out_file: '/var/log/vulpee/back-end/back-end.out.log',
+      exec_mode: 'fork_mode',
+    },
+  ],
+};
