@@ -1,10 +1,8 @@
-import { PermissionType } from '@vulpee/js-api';
+import { Permissions } from '@vulpee/js-api';
 
-import { BaseModel } from '.';
+import { Lucid } from '../../../../typings/@adonisjs';
 
-export default interface IPermission extends BaseModel {
-  id: number;
-  type: PermissionType;
-  name: string;
+export default interface IPermission extends Lucid.BaseModel {
+  type: Permissions;
   description: string;
 }

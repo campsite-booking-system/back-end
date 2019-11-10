@@ -1,7 +1,7 @@
 import { Establishment as JsonEstablishment } from '@vulpee/js-api';
 
-import BaseSerializer from './BaseSerializer';
 import { IEstablishment } from '../Types/Models';
+import BaseSerializer from './BaseSerializer';
 
 class EstablishmentSerializer extends BaseSerializer<IEstablishment> {
   constructor(rows: IEstablishment | IEstablishment[], pages = null, isOne = false) {

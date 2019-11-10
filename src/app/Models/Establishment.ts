@@ -1,4 +1,4 @@
-import opencage from 'opencage-api-client';
+import { GeocodeService } from '../Services';
 
 const Model = use('Model');
 const Logger = use('Logger');
@@ -7,22 +7,16 @@ class Establishment extends Model {
   public static boot() {
     super.boot();
 
-    this.addHook('beforeSave', async establishmentInstance => {
-      const fullAddress = `${establishmentInstance.address} ${establishmentInstance.complementary_address}, ${establishmentInstance.zip_code} ${establishmentInstance.city}, ${establishmentInstance.country}`;
+    this.addHook('beforeSave', async establishment => {
+      const fullAddress = `${establishment.address} ${establishment.complementary_address}, ${establishment.zip_code} ${establishment.city}, ${establishment.country}`;
 
-      try {
-        const data = await opencage.geocode({
-          q: fullAddress,
-        });
+      const response = await GeocodeService.getAddressCoordinates(fullAddress);
 
-        if (data.status.code === 200 && data.results.length > 0) {
-          const coordinates = data.results[0];
-
-          establishmentInstance.latitude = coordinates.geometry.lat;
-          establishmentInstance.longitude = coordinates.geometry.lng;
-        }
-      } catch (exception) {
-        Logger.info('The following address could not be geocoded: %s', fullAddress);
+      if (response) {
+        establishment.latitude = response.latitude;
+        establishment.longitude = response.longitude;
+      } else {
+        Logger.info('The establishment address could not be geocoded: %s', fullAddress);
       }
     });
 
@@ -44,33 +38,41 @@ class Establishment extends Model {
   }
 
   public users() {
-    return this.belongsToMany('App/Models/User').pivotTable('roles_establishments_users');
-  }
-
-  public async role(userId: number): Promise<any> {
-    return this.roles()
-      .where('user_id', userId)
-      .first();
-  }
-
-  public roles() {
-    return this.belongsToMany('App/Models/Role')
+    return this.belongsToMany('App/Models/User')
       .pivotTable('roles_establishments_users')
-      .withPivot(['user_id']);
+      .pivotPrimaryKey(null);
   }
 
-  public async permissions(userId: number) {
-    const role = await this.role(userId);
+  public accommodationCategories() {
+    return this.hasMany('App/Models/AccommodationCategory');
+  }
 
-    return role.permissions().fetch();
+  public accommodations() {
+    return this.manyThrough('App/Models/AccommodationCategory', 'accommodations');
+  }
+
+  public rentalCategories() {
+    return this.hasMany('App/Models/RentalCategory');
+  }
+
+  public rentals() {
+    return this.manyThrough('App/Models/RentalCategory', 'rentals');
+  }
+
+  public clients() {
+    return this.hasMany('App/Models/Client');
+  }
+
+  public bookings() {
+    return this.manyThrough('App/Models/Client', 'bookings');
   }
 
   public tokens() {
     return this.hasMany('App/Models/EstablishmentToken');
   }
 
-  public rentals() {
-    return this.hasMany('App/Models/Rental');
+  public paymentMethods() {
+    return this.belongsToMany('App/Models/PaymentMethod').pivotTable('establishments_payment_methods');
   }
 }
 

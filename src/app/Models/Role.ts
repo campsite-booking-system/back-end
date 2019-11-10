@@ -3,8 +3,8 @@ const Model = use('Model');
 class Role extends Model {
   static get rules() {
     return {
-      type: 'required|min:3|max:255|regex:^[a-zA-Z0-9_-]+$',
-      name: 'required|min:3|max:255',
+      type: 'required|min:1|max:100|regex:^[a-zA-Z0-9_-]+$|unique:roles,type',
+      description: 'min:1|max:1000',
     };
   }
 
@@ -13,9 +13,9 @@ class Role extends Model {
   }
 
   public permissions() {
-    return this.belongsToMany('App/Models/Permission')
-      .withTimestamps()
-      .pivotTable('roles_permissions');
+    return this.belongsToMany('App/Models/Permission', 'role_type', 'permission_type', 'type', 'type').pivotTable(
+      'roles_permissions',
+    );
   }
 }
 

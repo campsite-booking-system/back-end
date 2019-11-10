@@ -9990,6 +9990,19 @@ declare namespace Lucid {
       pivotTable(table: string): this;
 
       /**
+       * Define the pivot primary key
+       *
+       * @method pivotPrimaryKey
+       *
+       * @param  {String | Boolean | Null}   key
+       *
+       * @chainable
+       * @param key
+       * @return
+       */
+      pivotPrimaryKey(key: string | boolean | null): this;
+
+      /**
        * Make sure `created_at` and `updated_at` timestamps
        * are being used
        *

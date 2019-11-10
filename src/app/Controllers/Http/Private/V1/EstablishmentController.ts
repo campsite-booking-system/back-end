@@ -10,10 +10,11 @@ class EstablishmentController {
   }
 
   public async get({ request, auth }: Http.Context) {
-    const user = await auth.getUser();
     const { establishment } = request.params;
 
-    return EstablishmentService.getEstablishment(establishment, user);
+    const user = await auth.getUser();
+
+    return EstablishmentService.getEstablishment(Number(establishment), user);
   }
 }
 

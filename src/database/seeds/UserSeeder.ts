@@ -1,9 +1,8 @@
-import { RoleTypes } from '@vulpee/js-api';
+import { Roles } from '@vulpee/js-api';
 
 import { IEstablishment } from '../../app/Types/Models';
 
 const User = use('App/Models/User');
-const Role = use('App/Models/Role');
 const Establishment = use('App/Models/Establishment');
 
 class UserSeeder {
@@ -18,10 +17,8 @@ class UserSeeder {
 
     await user.save();
 
-    const role = await Role.findBy('type', RoleTypes.Administrator);
-
     await user.establishments().attach([establishmentId], (row: any) => {
-      row.role_id = role.id;
+      row.role_type = Roles.Administrator;
     });
 
     return user;
@@ -38,10 +35,8 @@ class UserSeeder {
 
     await user.save();
 
-    const role = await Role.findBy('type', RoleTypes.Manager);
-
     await user.establishments().attach([establishmentId], (row: any) => {
-      row.role_id = role.id;
+      row.role_type = Roles.Manager;
     });
 
     return user;
@@ -58,11 +53,10 @@ class UserSeeder {
 
     await user.save();
 
-    const role = await Role.findBy('type', RoleTypes.Viewer);
-
     await user.establishments().attach([establishmentId], (row: any) => {
-      row.role_id = role.id;
+      row.role_type = Roles.Viewer;
     });
+
     return user;
   }
 
@@ -80,10 +74,8 @@ class UserSeeder {
     const establishments = await Establishment.all();
     const establishmentIds = establishments.rows.map((establishment: IEstablishment) => establishment.id);
 
-    const role = await Role.findBy('type', RoleTypes.Administrator);
-
     await user.establishments().attach(establishmentIds, (row: any) => {
-      row.role_id = role.id;
+      row.role_type = Roles.Administrator;
     });
 
     await this.createTestUsers();
@@ -105,10 +97,8 @@ class UserSeeder {
     const establishments = await Establishment.all();
     const establishmentIds = establishments.rows.map((establishment: IEstablishment) => establishment.id);
 
-    const role = await Role.findBy('type', RoleTypes.Administrator);
-
     await testUser1.establishments().attach(establishmentIds, (row: any) => {
-      row.role_id = role.id;
+      row.role_type = Roles.Administrator;
     });
 
     const testUser2 = new User();
@@ -122,7 +112,7 @@ class UserSeeder {
     await testUser2.save();
 
     await testUser2.establishments().attach([1], (row: any) => {
-      row.role_id = role.id;
+      row.role_type = Roles.Administrator;
     });
   }
 }

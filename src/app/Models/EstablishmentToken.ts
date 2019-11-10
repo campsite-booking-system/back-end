@@ -6,13 +6,9 @@ class EstablishmentToken extends Model {
   public static boot() {
     super.boot();
 
-    this.addHook('beforeCreate', async tokenInstance => {
-      tokenInstance.token = crypto.randomBytes(32).toString('hex');
+    this.addHook('beforeCreate', async token => {
+      token.token = crypto.randomBytes(32).toString('hex');
     });
-  }
-
-  static get visible() {
-    return ['id', 'name', 'token'];
   }
 
   public establishment() {

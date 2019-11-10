@@ -1,7 +1,7 @@
-import { PermissionType } from '@vulpee/js-api';
+import { Permissions } from '@vulpee/js-api';
 
-import BaseSerializer from './BaseSerializer';
 import { IPermission } from '../Types/Models';
+import BaseSerializer from './BaseSerializer';
 
 class PermissionSerializer extends BaseSerializer<IPermission> {
   constructor(rows: IPermission | IPermission[], pages = null, isOne = false) {
@@ -16,7 +16,7 @@ class PermissionSerializer extends BaseSerializer<IPermission> {
     return this.getRowJSON(this.rows);
   }
 
-  private getRowJSON(permission: IPermission): PermissionType {
+  private getRowJSON(permission: IPermission): Permissions {
     return permission.type;
   }
 }

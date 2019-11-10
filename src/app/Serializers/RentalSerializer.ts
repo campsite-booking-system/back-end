@@ -1,5 +1,7 @@
-import BaseSerializer from './BaseSerializer';
+import { Rental as JsonRental } from '@vulpee/js-api';
+
 import { IRental } from '../Types/Models';
+import BaseSerializer from './BaseSerializer';
 
 class RentalSerializer extends BaseSerializer<IRental> {
   constructor(rows: IRental | IRental[], pages = null, isOne = false) {
@@ -14,14 +16,11 @@ class RentalSerializer extends BaseSerializer<IRental> {
     return this.getRowJSON(this.rows);
   }
 
-  private getRowJSON(rental: IRental) {
-    const relations = this.getRelations(rental.$relations);
-
+  private getRowJSON(rental: IRental): JsonRental {
     return {
       id: rental.id,
       name: rental.name,
       description: rental.description,
-      ...relations,
       updatedAt: rental.updated_at,
     };
   }

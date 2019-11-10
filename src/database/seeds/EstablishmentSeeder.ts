@@ -1,20 +1,12 @@
 import UserSeeder from './UserSeeder';
+import AccommodationSeeder from './AccommodationSeeder';
 import RentalSeeder from './RentalSeeder';
 
 const Establishment = use('App/Models/Establishment');
 const EstablishmentToken = use('App/Models/EstablishmentToken');
 
 class EstablishmentSeeder {
-  private rentalSeeder: RentalSeeder;
-
-  constructor() {
-    this.rentalSeeder = new RentalSeeder();
-  }
-
   public async run() {
-    await this.rentalSeeder.createCharacteristics();
-    await this.rentalSeeder.createServices();
-
     for await (const index of [1, 2, 3]) {
       await this.createEstablishment(index);
     }
@@ -32,8 +24,11 @@ class EstablishmentSeeder {
 
     await establishment.save();
 
-    // Create three rentals and add them to the establishment
-    await this.rentalSeeder.createRentals(establishment.id);
+    // Create accommodations and add them to the establishment
+    await AccommodationSeeder.createAccommodations(establishment.id);
+
+    // Create rentals and add them to the establishment
+    await RentalSeeder.createRentals(establishment.id);
 
     // Create an API token and add it to the establishment
     await this.createEstablishmentToken('Master', establishment.id);
