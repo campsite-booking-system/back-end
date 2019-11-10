@@ -6,7 +6,7 @@ const Establishment = use('App/Models/Establishment');
 async function getEstablishment(establishmentId: number, user: User): Promise<any> {
   try {
     const establishment = await Establishment.find(establishmentId);
-    const role = await establishment.role(user.id);
+    const role = await user.role(establishment.id);
 
     await role.load('permissions');
 

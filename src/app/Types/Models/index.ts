@@ -1,11 +1,20 @@
 export { default as BaseModel } from './BaseModel';
+
+export { default as IAccommodation } from './Accommodation';
+export { default as IAccommodationCategory } from './AccommodationCategory';
+export { default as IAccommodationCharacteristic } from './AccommodationCharacteristic';
+export { default as IAccommodationService } from './AccommodationService';
+export { default as IAccommodationsCharacteristics } from './AccommodationsCharacteristics';
+export { default as IBooking } from './Booking';
+export { default as IBookingsRentals } from './BookingsRentals';
+export { default as IClient } from './Client';
 export { default as IEstablishment } from './Establishment';
 export { default as IEstablishmentToken } from './EstablishmentToken';
+export { default as IPayment } from './Payment';
+export { default as IPaymentMethod } from './PaymentMethod';
 export { default as IPermission } from './Permission';
 export { default as IRental } from './Rental';
-export { default as IRentalsCharacteristics } from './RentalsCharacteristics';
-export { default as IRentalCharacteristic } from './RentalCharacteristic';
-export { default as IRentalService } from './RentalService';
+export { default as IRentalCategory } from './RentalCategory';
 export { default as IRole } from './Role';
-export { default as IUserToken } from './UserToken';
 export { default as IUser } from './User';
+export { default as IUserToken } from './UserToken';

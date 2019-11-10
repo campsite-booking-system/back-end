@@ -1,4 +1,4 @@
-import { RoleType, PermissionType } from '@vulpee/js-api';
+import { Roles, Permissions } from '@vulpee/js-api';
 
 import { IPermission } from '../Types/Models';
 
@@ -9,9 +9,9 @@ class User extends Model {
   public static boot() {
     super.boot();
 
-    this.addHook('beforeSave', async userInstance => {
-      if (userInstance.dirty.password) {
-        userInstance.password = await Hash.make(userInstance.password);
+    this.addHook('beforeSave', async user => {
+      if (user.dirty.password) {
+        user.password = await Hash.make(user.password);
       }
     });
   }
@@ -27,9 +27,10 @@ class User extends Model {
   }
 
   public roles() {
-    return this.belongsToMany('App/Models/Role')
+    return this.belongsToMany('App/Models/Role', 'user_id', 'role_type', 'id', 'type')
       .pivotTable('roles_establishments_users')
-      .withPivot(['establishment_id']);
+      .withPivot(['establishment_id'])
+      .pivotPrimaryKey(null);
   }
 
   public async permissions(establishmentId: number) {
@@ -39,21 +40,31 @@ class User extends Model {
   }
 
   public establishments() {
-    return this.belongsToMany('App/Models/Establishment').pivotTable('roles_establishments_users');
+    return this.belongsToMany('App/Models/Establishment')
+      .pivotTable('roles_establishments_users')
+      .pivotPrimaryKey(null);
   }
 
   public tokens() {
     return this.hasMany('App/Models/UserToken');
   }
 
-  public async can(establishmentId: number, permission: PermissionType): Promise<boolean> {
-    const permissions = await this.permissions(establishmentId);
-    const permissionTypes: PermissionType[] = permissions.rows.map((item: IPermission) => item.type);
+  public async can(establishmentId: number, permissions: Permissions[]): Promise<boolean> {
+    const userPermissions = await this.permissions(establishmentId);
+    const permissionTypes: Permissions[] = userPermissions.rows.map((item: IPermission) => item.type);
 
-    return permissionTypes.includes(permission);
+    let hasUnmetPermission = false;
+
+    permissions.forEach(permission => {
+      if (!permissionTypes.includes(permission)) {
+        hasUnmetPermission = true;
+      }
+    });
+
+    return !hasUnmetPermission;
   }
 
-  public async is(establishmentId: number, roleType: RoleType): Promise<boolean> {
+  public async is(establishmentId: number, roleType: Roles): Promise<boolean> {
     const role = await this.role(establishmentId);
 
     return role.type === roleType;

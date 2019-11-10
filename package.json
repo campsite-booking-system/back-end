@@ -24,7 +24,7 @@
     "@adonisjs/validator": "^5.0.6",
     "@adonisjs/vow": "^1.0.17",
     "@bugsnag/js": "^5.1.0",
-    "@vulpee/js-api": "^0.5.1",
+    "@vulpee/js-api": "^0.5.6",
     "opencage-api-client": "^0.5.0",
     "pg": "^7.7.1",
     "uuid": "^3.3.2"
@@ -39,6 +39,7 @@
     "nodemon": "^1.19.2",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
+    "snowboard": "^3.5.2",
     "tsc-watch": "^2.4.0",
     "tslint": "^5.19.0",
     "tslint-config-airbnb": "^5.11.1",
@@ -49,12 +50,13 @@
     "start": "nodemon ./dist/server.js",
     "start:typescript": "npm run clean && npm run copy:files && tsc-watch",
     "build": "npm run clean && tsc && npm run copy:files",
-    "copy:files": "cpx 'ace' dist && ln -s ../.env dist/.env && ln -s ../package.json dist/package.json && ln -fs ../src/resources dist/resources && ln -fs ../node_modules dist/node_modules",
-    "clean": "rimraf dist/ && mkdir dist",
+    "copy:files": "cpx 'ace' dist && cpx '.npmrc' dist && ln -s ../.env dist/.env && ln -s ../package.json dist/package.json && ln -fs ../src/resources dist/resources && ln -fs ../node_modules dist/node_modules",
+    "clean": "rimraf dist/",
     "lint": "tslint 'src/**/*.ts' --project tsconfig.json && prettier --check 'src/**/*.ts'",
     "test": "cpx '.env.testing' dist && node dist/ace test",
     "db:migrate": "node dist/ace migration:run",
-    "db:reset": "node dist/ace migration:refresh && node dist/ace seed --files database/seeds/PermissionSeeder.js && node dist/ace seed --files database/seeds/RoleSeeder.js && node dist/ace seed --files database/seeds/EstablishmentSeeder.js && node dist/ace seed --files database/seeds/UserSeeder.js"
+    "db:reset": "node dist/ace migration:refresh && node dist/ace seed --files database/seeds/EstablishmentSeeder.js && node dist/ace seed --files database/seeds/UserSeeder.js",
+    "docs:private:start": "snowboard http -w docs/private/API.apib"
   },
   "autoload": {
     "App": "./app"

@@ -1,9 +1,8 @@
-import { RoleType } from '@vulpee/js-api';
+import { Roles } from '@vulpee/js-api';
 
-import { BaseModel } from '.';
+import { Lucid } from '../../../../typings/@adonisjs';
 
-export default interface IRole extends BaseModel {
-  id: number;
-  type: RoleType;
-  name: string;
+export default interface IRole extends Lucid.BaseModel {
+  type: Roles;
+  description: string;
 }
