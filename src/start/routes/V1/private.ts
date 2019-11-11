@@ -1,6 +1,7 @@
 import { Permissions } from '@vulpee/js-api';
 
 const Route = use('Route');
+const Helpers = use('Helpers');
 
 /*
 |--------------------------------------------------------------------------
@@ -9,6 +10,16 @@ const Route = use('Route');
 | Routes for the privately available APIs for the front-end applications
 |--------------------------------------------------------------------------
 */
+
+Route.get('/1.0', async ({ request, response }) => {
+  const bestFormat = request.accepts(['json', 'html']);
+
+  if (bestFormat === 'json') {
+    return { message: 'Welcome to the Vulpee 1.0 API' };
+  }
+
+  response.download(Helpers.resourcesPath('docs/index.html'));
+});
 
 /*
 |--------------------------------------------------------------------------
