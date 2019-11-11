@@ -1,10 +1,10 @@
-import * as rental from './Rental';
+import * as service from './Rental';
 
 class RentalService {
-  public static getRental = rental.getRental;
-  public static getRentals = rental.getRentals;
-  public static getRentalCategories = rental.getRentalCategories;
-  public static getRentalCategory = rental.getRentalCategory;
+  public static getRental = service.getRental;
+  public static getRentals = service.getRentals;
+  public static getRentalCategories = service.getRentalCategories;
+  public static getRentalCategory = service.getRentalCategory;
 }
 
 export default RentalService;

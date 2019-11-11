@@ -11,6 +11,10 @@ class EstablishmentToken extends Model {
     });
   }
 
+  static get Serializer() {
+    return use('App/Serializers/EstablishmentTokenSerializer');
+  }
+
   public establishment() {
     return this.belongsTo('App/Models/Establishment');
   }

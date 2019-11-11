@@ -1,14 +1,14 @@
 import { Auth } from '../../../typings/@adonisjs';
 
-import * as authentication from './Authentication';
+import * as service from './Authentication';
 
 class AuthenticationService {
-  public static forgotPassword = authentication.forgotPassword;
-  public static resetPassword = authentication.resetPassword;
+  public static forgotPassword = service.forgotPassword;
+  public static resetPassword = service.resetPassword;
 
-  public login = authentication.login;
-  public logout = authentication.logout;
-  public verify = authentication.verify;
+  public login = service.login;
+  public logout = service.logout;
+  public verify = service.verify;
 
   protected auth: Auth;
 

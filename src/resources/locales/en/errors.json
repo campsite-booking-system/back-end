@@ -4,7 +4,6 @@
   "notFound": "The requested resource could not been found.",
   "unauthorized": "You are not authorized to access this resource",
   "invalidToken": "The given token is not valid.",
-
   "missingToken": "No authentication token was provided.",
 
   "invalidCredentials": "The email and password combination you entered is incorrect.",
@@ -15,5 +14,10 @@
   "requiredEmail": "Please enter your email address.",
   "invalidEmail": "Please enter a valid email.",
   "requiredPassword": "Please enter your password.",
-  "requiredPasswordConfirmation": "Please confirm your password."
+  "requiredPasswordConfirmation": "Please confirm your password.",
+
+  "uniqueEstablishmentTokenName": "A token already exists with this name.",
+  "requiredEstablishmentTokenName": "Please enter a name for your token.",
+  "minEstablishmentTokenNotUniqueName": "The name must be at least one character.",
+  "maxEstablishmentTokenNotUniqueName": "The name can not have more than 255 characters."
 }
