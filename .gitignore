@@ -9,3 +9,6 @@ tmp
 
 # Generated files
 dist/
+
+# Docs
+src/resources/docs
