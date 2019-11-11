@@ -36,7 +36,9 @@ class User extends Model {
   public async permissions(establishmentId: number) {
     const role = await this.role(establishmentId);
 
-    return role.permissions().fetch();
+    if (role) {
+      return role.permissions().fetch();
+    }
   }
 
   public establishments() {
@@ -51,23 +53,32 @@ class User extends Model {
 
   public async can(establishmentId: number, permissions: Permissions[]): Promise<boolean> {
     const userPermissions = await this.permissions(establishmentId);
-    const permissionTypes: Permissions[] = userPermissions.rows.map((item: IPermission) => item.type);
 
-    let hasUnmetPermission = false;
+    if (userPermissions) {
+      const permissionTypes: Permissions[] = userPermissions.rows.map((item: IPermission) => item.type);
 
-    permissions.forEach(permission => {
-      if (!permissionTypes.includes(permission)) {
-        hasUnmetPermission = true;
-      }
-    });
+      let hasUnmetPermission = false;
 
-    return !hasUnmetPermission;
+      permissions.forEach(permission => {
+        if (!permissionTypes.includes(permission)) {
+          hasUnmetPermission = true;
+        }
+      });
+
+      return !hasUnmetPermission;
+    }
+
+    return false;
   }
 
   public async is(establishmentId: number, roleType: Roles): Promise<boolean> {
     const role = await this.role(establishmentId);
 
-    return role.type === roleType;
+    if (role) {
+      return role.type === roleType;
+    }
+
+    return false;
   }
 }
 
