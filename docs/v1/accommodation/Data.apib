@@ -1,0 +1,30 @@
+## Data Structures
+
+### Accommodation
++ id: 1 (number, required)
++ name: Demo accommodation (string, required)
++ description: Lorem ipsum (string, optional)
++ updatedAt: `2019-11-10T12:54:45.000Z` (string, required)
+
+### Accommodation detailed (Accommodation)
++ characteristics (array[Characteristic])
++ services (array[enum[string]])
+    + Members
+        + `wifi`
+        + `dryer`
+        + `coffee_machine`
+        + `swimming_pool`
+        + `elevator`
+        + `television`
+        + `bath`
+
+### Characteristic
++ type (enum[string])
+    + Members
+        + `people`
+        + `chambers`
+        + `single_beds`
+        + `double_beds`
+        + `bathrooms`
+        + `square_meters`
++ value: 4 (string)

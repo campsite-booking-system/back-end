@@ -18,7 +18,7 @@ Route.get('/1.0', async ({ request, response }) => {
     return { message: 'Welcome to the Vulpee 1.0 API' };
   }
 
-  response.download(Helpers.resourcesPath('docs/index.html'));
+  response.download(Helpers.resourcesPath('docs/v1.html'));
 });
 
 /*
@@ -99,20 +99,18 @@ Route.group(() => {
 |--------------------------------------------------------------------------
 */
 Route.group(() => {
-  Route.get('/', 'Private/V1/AccommodationController.index').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewAccommodation}`,
-  ]);
+  Route.get('/', 'Private/V1/AccommodationController.index').middleware([`can:${Permissions.ViewAccommodation}`]);
 
   Route.get('/categories', 'Private/V1/AccommodationController.categories').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewAccommodation}`,
+    `can:${Permissions.ViewAccommodation}`,
   ]);
 
   Route.get('/categories/:category', 'Private/V1/AccommodationController.category').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewAccommodation}`,
+    `can:${Permissions.ViewAccommodation}`,
   ]);
 
   Route.get('/:accommodation', 'Private/V1/AccommodationController.get').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewAccommodation}`,
+    `can:${Permissions.ViewAccommodation}`,
   ]);
 })
   .middleware(['auth'])
@@ -124,21 +122,15 @@ Route.group(() => {
 |--------------------------------------------------------------------------
 */
 Route.group(() => {
-  Route.get('/', 'Private/V1/RentalController.index').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewRental}`,
-  ]);
+  Route.get('/', 'Private/V1/RentalController.index').middleware([`can:${Permissions.ViewRental}`]);
 
-  Route.get('/categories', 'Private/V1/RentalController.categories').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewRental}`,
-  ]);
+  Route.get('/categories', 'Private/V1/RentalController.categories').middleware([`can:${Permissions.ViewRental}`]);
 
   Route.get('/categories/:category', 'Private/V1/RentalController.category').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewRental}`,
+    `can:${Permissions.ViewRental}`,
   ]);
 
-  Route.get('/:rental', 'Private/V1/RentalController.get').middleware([
-    `can:${Permissions.ViewEstablishment},${Permissions.ViewRental}`,
-  ]);
+  Route.get('/:rental', 'Private/V1/RentalController.get').middleware([`can:${Permissions.ViewRental}`]);
 })
   .middleware(['auth'])
   .prefix('1.0/establishments/:establishment/rentals');
