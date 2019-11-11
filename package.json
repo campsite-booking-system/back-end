@@ -56,8 +56,8 @@
     "test": "cpx '.env.testing' dist && node dist/ace test",
     "db:migrate": "node dist/ace migration:run",
     "db:reset": "node dist/ace migration:refresh && node dist/ace seed --files database/seeds/EstablishmentSeeder.js && node dist/ace seed --files database/seeds/UserSeeder.js",
-    "docs:private:start": "snowboard http -w docs/private/API.apib",
-    "docs:private:build": "snowboard html -o src/resources/docs/index.html docs/private/API.apib"
+    "docs:v1:start": "snowboard http -w docs/v1/API.apib",
+    "docs:v1:build": "snowboard html -o src/resources/docs/v1.html docs/v1/API.apib"
   },
   "autoload": {
     "App": "./app"

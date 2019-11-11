@@ -1,0 +1,15 @@
+### Verify [POST /auth/verify]
++ Request
+    + Headers
+
+            Authorization: Bearer my-authorization-token
+
++ Response 204
+
++ Response 401 (application/json)
+
+        {
+            "error": {
+                "message": "You are not authorized to access this resource"
+            }
+        }

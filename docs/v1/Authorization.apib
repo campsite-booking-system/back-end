@@ -1,0 +1,20 @@
+## Authentication
+
+The authorize a user, place the authentication token in the `Authorization` Header.
+
+```js
+Bearer my-authentication-token
+```
+
+Each user has a role for each establishment. This role determines the permissions the user has.  
+Before each request, the access of the user is verified. You will find the permissions needed for each API, in this documentation.  
+
+You can find below which permissions each role has.  
+
+## Roles
+
+| Role                  | Permissions                    |
+|-----------------------|--------------------------------|
+| **administrator**     | - `view_establishment` <br> - `create_establishment` <br> - `edit_establishment` <br> - `delete_establishment` <br> - `view_establishment_token` <br> - `create_establishment_token` <br> - `edit_establishment_token` <br> - `delete_establishment_token` <br> - `view_accommodation` <br> - `create_accommodation` <br> - `edit_accommodation` <br> - `delete_accommodation` <br> - `view_rental` <br> - `create_rental` <br> - `edit_rental` <br> - `delete_rental` <br> - `view_client` <br> - `create_client` <br> - `edit_client` <br> - `delete_client` <br> - `view_booking` <br> - `create_booking` <br> - `edit_booking` <br> - `delete_booking` <br> - `view_payment` <br> - `create_payment` <br> - `edit_payment` <br> - `delete_payment`|
+| **manager**           | - `view_establishment` <br>  - `edit_establishment` <br> - `view_accommodation` <br> - `create_accommodation` <br> - `edit_accommodation` <br> - `delete_accommodation` <br> - `view_rental` <br> - `create_rental` <br> - `edit_rental` <br> - `delete_rental` <br> - `view_client` <br> - `create_client` <br> - `edit_client` <br> - `delete_client` <br> - `view_booking` <br> - `create_booking` <br> - `edit_booking` <br> - `delete_booking` <br> - `view_payment` <br> - `create_payment` <br> - `edit_payment` <br> - `delete_payment` |
+| **viewer**            | - `view_establishment` <br> - `view_accommodation` <br> - `view_rental` <br> - `view_client` <br> - `view_booking` <br> - `view_payment` |
