@@ -66,6 +66,35 @@ Route.group(() => {
 
 /*
 |--------------------------------------------------------------------------
+| ESTABLISHMENT TOKENS
+|--------------------------------------------------------------------------
+*/
+Route.group(() => {
+  Route.get('/', 'Private/V1/EstablishmentTokenController.index').middleware([
+    `can:${Permissions.ViewEstablishmentToken}`,
+  ]);
+
+  Route.post('/', 'Private/V1/EstablishmentTokenController.create')
+    .middleware([`can:${Permissions.CreateEstablishmentToken}`])
+    .validator('Establishment/Token');
+
+  Route.put('/:id', 'Private/V1/EstablishmentTokenController.edit')
+    .middleware([`can:${Permissions.EditEstablishmentToken}`])
+    .validator('Establishment/Token');
+
+  Route.patch('/:id', 'Private/V1/EstablishmentTokenController.regenerate').middleware([
+    `can:${Permissions.EditEstablishmentToken}`,
+  ]);
+
+  Route.delete('/:id', 'Private/V1/EstablishmentTokenController.delete').middleware([
+    `can:${Permissions.DeleteEstablishmentToken}`,
+  ]);
+})
+  .middleware(['auth'])
+  .prefix('1.0/establishments/:establishment/tokens');
+
+/*
+|--------------------------------------------------------------------------
 | ACCOMMODATIONS
 |--------------------------------------------------------------------------
 */

@@ -1,10 +1,10 @@
-import * as accommodation from './Accommodation';
+import * as service from './Accommodation';
 
 class AccommodationService {
-  public static getAccommodation = accommodation.getAccommodation;
-  public static getAccommodations = accommodation.getAccommodations;
-  public static getAccommodationCategories = accommodation.getAccommodationCategories;
-  public static getAccommodationCategory = accommodation.getAccommodationCategory;
+  public static getAccommodation = service.getAccommodation;
+  public static getAccommodations = service.getAccommodations;
+  public static getAccommodationCategories = service.getAccommodationCategories;
+  public static getAccommodationCategory = service.getAccommodationCategory;
 }
 
 export default AccommodationService;
